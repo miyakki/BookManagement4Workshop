@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.page-body {
+    font-family: 'Segoe UI', 'ヒラギノ角ゴ ProN', 'Meiryo', sans-serif;
+    background: #f7f7fa;
+    color: #222;
+    margin: 0;
+    padding: 2rem;
+    line-height: 1.7;
+}
+
+.heading-1, .heading-2 {
+    color: #2a5d9f;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.link {
+    color: #1976d2;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.link:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.image {
+    display: block;
+    margin: 1em 0;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.unordered-list, .ordered-list {
+    margin: 1em 0 1em 2em;
+    padding: 0;
+}
+
+.list-item {
+    margin-bottom: 0.3em;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.table-header, .table-data {
+    border: 1px solid #b0bec5;
+    padding: 0.7em 1em;
+    text-align: left;
+}
+
+.table-header {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.table-row:nth-child(even) .table-data {
+    background: #f1f8e9;
+}
+
+.hr-line {
+    border: none;
+    border-top: 2px solid #90caf9;
+    margin: 2em 0;
+}
+
+.box {
+    background: #fffde7;
+    border-left: 6px solid #ffe082;
+    padding: 1em 1.5em;
+    margin: 2em 0;
+    border-radius: 6px;
+}
