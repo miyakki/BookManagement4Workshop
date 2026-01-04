@@ -143,10 +143,72 @@ class Tougou {
 
     // 指定された初期位置に潜水艦を配置(濱口)
     static void setSubmarines() {
-        board[0][3] = 4; // A-4
-        board[1][0] = 4; // B-1
-        board[3][3] = 4; // D-4
-        board[4][1] = 4; // E-2
+        int MaxAtckSell = 0;
+        int    AtckSell = 0;
+        int setX = -1, setY = -1;
+
+        boolean boardB[][] = new boolean[SIZE][SIZE];
+        for(int i = 0; i < SIZE; i++){
+            for(int j = 0; j < SIZE; j++){
+                boardB[i][j] = true; 
+            }
+        }
+        // 端
+        for(int i = 0; i < 3; i++){
+            MaxAtckSell = 0;
+            for(int y = 0; y < SIZE; y++){
+            for(int x = 0; x < SIZE; x++){
+                if(x == 0 || x == (SIZE-1) || y == 0 || y == (SIZE-1)){
+                    AtckSell = 0;
+                // 攻撃可能セル数カウント
+                    for(int dy = -1; dy <= 1; dy++){
+                    for(int dx = -1; dx <= 1; dx++){
+                        if((x+dx) >= 0 && (x+dx) < SIZE && (y+dy) >= 0 && (y+dy) < SIZE && (dx != 0 && dy != 0)){
+                            if(boardB[y+dy][x+dx]) AtckSell++;
+                        }
+                    }
+                    }
+                    if(MaxAtckSell < AtckSell){
+                        MaxAtckSell = AtckSell;
+                        setX = x;
+                        setY = y;
+                    }
+                }
+            }
+            }
+
+            for(int dy = -1; dy <= 1; dy++){
+            for(int dx = -1; dx <= 1; dx++){
+                if((setX + dx) >= 0 && (setX + dx) < SIZE && (setY + dy) >= 0 && (setY + dy) < SIZE){
+                    boardB[setY + dy][setX + dx] = false;
+                }
+            }
+            }
+            board[setY][setX] = 3;
+            System.out.println((char)('A'+ setY) + "-" + ( setX+1)+"    HP :3");
+        }
+        //not端
+        MaxAtckSell = 0;
+        for(int y = 0; y < SIZE; y++){
+        for(int x = 0; x < SIZE; x++){        
+                AtckSell = 0;
+                // 攻撃可能セル数カウント
+                for(int dy = -1; dy <= 1; dy++){
+                for(int dx = -1; dx <= 1; dx++){
+                    if((x+dx) >= 0 && (x+dx) < SIZE && (y+dy) >= 0 && (y+dy) < SIZE && (dx != 0 && dy != 0)){
+                        if(boardB[y+dy][x+dx]) AtckSell++;
+                    }
+                }
+                }
+                if(MaxAtckSell < AtckSell){
+                    MaxAtckSell = AtckSell;
+                    setX = x;
+                    setY = y;
+                }
+        }
+        }
+        board[setY][setX] = 3;
+        System.out.println((char)('A'+ setY) + "-" + ( setX+1)+"    HP :3");
     }
 
     // 自軍潜水艦のHPのみ表示(濱口)
@@ -609,4 +671,5 @@ class Tougou {
         // 新しい盤面を現在の期待値盤面に上書き
         board_enemy = nextBoardEnemy;
     }
+
 }
